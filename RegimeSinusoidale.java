@@ -1,4 +1,6 @@
+import java.math.BigDecimal;
 import java.util.Random;
+import java.math.RoundingMode;
 
 public class RegimeSinusoidale{
     public static final char OMEGA='\u2126';
@@ -47,9 +49,17 @@ public class RegimeSinusoidale{
         String[] out = new String[5];
         out[0]="V = "+rand.nextInt(40)+"V";
         out[1]="R = "+rand.nextInt(3000)+OMEGA;
-        out[2]="C = "+(rand.nextInt(400)*10E-9)+"F";
-        out[3]="L = "+(rand.nextInt(400)*10E-9)+"H";
+        out[2]="C = "+(round(rand.nextInt(400),1)*10E-9)+"F";
+        out[3]="L = "+(round(rand.nextInt(400),1)*10E-9)+"H";
         out[4]="f = "+rand.nextInt(100)*10E1+"Hz";
         return out;
+    }
+
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+    
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
