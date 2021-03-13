@@ -76,7 +76,7 @@ public class RegimeSinusoidale{
      */
     public static String[] valoreEfficaceC(double v, double c, double f){
         String[] out = new String[2];
-        out[0] = circuitoRc(v, 0, c, f)[2];
+        out[0] = circuitoRcSerie(v, 0, c, f)[2];
         out[1] = ""+(Double.parseDouble(out[0].substring(5,out[0].length()-1)) * Math.sqrt(2));
         return out;
     }
