@@ -27,7 +27,7 @@ public class RegimeSinusoidale{
      * Metodo che ritorna la corrente e lo sfasamento di un circuito RL serie
      * @return [XL, |Z|, I, Sfasamento]
      */
-    public String[] circuitoRl(double volt, double r, double l, double f){
+    public static String[] circuitoRl(double volt, double r, double l, double f){
         double[] out = new double[4];
         out[0] = Math.PI*2*f*l;
         out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
