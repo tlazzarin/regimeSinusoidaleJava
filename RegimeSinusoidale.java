@@ -9,7 +9,7 @@ public class RegimeSinusoidale{
      * Metodo che ritorna la corrente e lo sfasamento di un circuito RC serie
      * @return [XC, |Z|, I, Sfasamento]
      */
-    public static String[] circuitoRc(double volt, double r, double c, double f){
+    public static String[] circuitoRcSerie(double volt, double r, double c, double f){
         double[] out = new double[4];
         out[0] = 1/(Math.PI*2*f*c);
         out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
@@ -25,9 +25,13 @@ public class RegimeSinusoidale{
 
     /**
      * Metodo che ritorna la corrente e lo sfasamento di un circuito RL serie
+     * @param volt voltaggio
+     * @param r la resistenza
+     * @param l l'induttanza
+     * @param f la frequenza
      * @return [XL, |Z|, I, Sfasamento]
      */
-    public static String[] circuitoRl(double volt, double r, double l, double f){
+    public static String[] circuitoRlSerie(double volt, double r, double l, double f){
         double[] out = new double[4];
         out[0] = Math.PI*2*f*l;
         out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
@@ -61,5 +65,19 @@ public class RegimeSinusoidale{
         BigDecimal bd = new BigDecimal(Double.toString(value));
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    /**
+     * funzione che ritorna il valore efficace e l'intensità di picco di un condensatore a regime sinusoidale
+     * @param v voltaggio
+     * @param c capacità del condensatore
+     * @param f frequenza della sinusoide
+     * @return [valoreEfficace, valoreDiPicco]
+     */
+    public static String[] valoreEfficaceC(double v, double c, double f){
+        String[] out = new String[2];
+        out[0] = circuitoRc(v, 0, c, f)[2];
+        out[1] = ""+(Double.parseDouble(out[0].substring(5,out[0].length()-1)) * Math.sqrt(2));
+        return out;
     }
 }
