@@ -24,7 +24,7 @@ public class RegimeSinusoidale{
     }
 
     /**
-     * Metodo che ritorna la corrente e lo sfasamento di un circuito RL serie
+     * Metodo che ritorna la corrente e lo sfasamento di un circuito RL serie ciao toma
      * @param volt voltaggio
      * @param r la resistenza
      * @param l l'induttanza
