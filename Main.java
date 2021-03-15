@@ -3,5 +3,6 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         FinestraSinusoide fs = new FinestraSinusoide();
+        System.out.println(Arrays.toString(RegimeSinusoidale.circuitoRlSerie(10, 1000, 0.005, 1000)));
     }
 }

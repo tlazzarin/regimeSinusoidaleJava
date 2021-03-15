@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.awt.GridLayout;
+
 public class FinestraSinusoide extends JFrame implements ActionListener {
     /**
      *
@@ -31,13 +33,14 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
     
     public FinestraSinusoide(){
         super("Sinusoidi");
+        setLayout(new GridLayout(5,5));
         risultato = new JLabel();
         setSize(1000,800);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
         String[] tipi = new String[]{"RC","RL","RLC"};
         tipo= new JComboBox<>(tipi);
-        add(tipo,"North");
+        add(tipo);
         tipo.setVisible(true);
         testi.add(ResL);
         testi.add(Res);
@@ -49,7 +52,7 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
         testi.add(Freq);
         testi.add(VoltL);
         testi.add(Volt);
-        add(testi,"Center");
+        add(testi);
         ResL.setVisible(false);
         Res.setVisible(false);
         CapL.setVisible(false);
@@ -62,10 +65,10 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
         Volt.setVisible(false);
         calcola.setVisible(false);
         invia.addActionListener(new AscoltatoreMouse());
-        add(risultato,"Center");
+        add(risultato);
         calcola.addActionListener(this);
-        add(calcola,"West");
-        add(invia,"South");
+        add(calcola);
+        add(invia);
         risultato.setVisible(false);
     }
     private class AscoltatoreMouse implements ActionListener{
@@ -74,23 +77,10 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             int scelta =tipo.getSelectedIndex();
+            invia.setVisible(true);
             calcola.setVisible(false);
             ResL.setVisible(true);
             Res.setVisible(true);
-            /*switch(tipo.getSelectedIndex()){
-                case 0: CapL.setVisible(true);
-                        Cap.setVisible(true);
-                        InduL.setVisible(false);
-                        Indu.setVisible(false);
-                case 1: CapL.setVisible(false);
-                        Cap.setVisible(false);
-                        InduL.setVisible(true);
-                        Indu.setVisible(true);
-                case 2: CapL.setVisible(true);
-                        Cap.setVisible(true);
-                        InduL.setVisible(true);
-                        Indu.setVisible(true);
-            }*/
             if(scelta==0){
                 CapL.setVisible(true);
                 Cap.setVisible(true);
@@ -119,19 +109,25 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int scelta =tipo.getSelectedIndex();
-        testi.setVisible(false);
+        
         invia.setVisible(true);
         calcola.setVisible(false);
         switch(scelta){
-            case 0: 
+            case 0:
                 risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRcSerie(Double.parseDouble(Volt.getText()),Double.parseDouble(Res.getText()), Double.parseDouble(Cap.getText()), Double.parseDouble(Freq.getText()))));
+                testi.setVisible(false);
                 risultato.setVisible(true);
-            case 1: 
+                break;
+            case 1:
                 risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRlSerie(Double.parseDouble(Volt.getText()),Double.parseDouble(Res.getText()), Double.parseDouble(Indu.getText()), Double.parseDouble(Freq.getText()))));
+                testi.setVisible(false);
                 risultato.setVisible(true);
+                break;
             case 2:
                 risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRcSerie(Double.parseDouble(Volt.getText()),Double.parseDouble(Res.getText()), Double.parseDouble(Cap.getText()), Double.parseDouble(Freq.getText()))));
+                testi.setVisible(false);
                 risultato.setVisible(true);
+                break;
         }
     }
 }

@@ -32,6 +32,7 @@ public class RegimeSinusoidale{
      * @return [XL, |Z|, I, Sfasamento]
      */
     public static String[] circuitoRlSerie(double volt, double r, double l, double f){
+        //System.out.println("");
         double[] out = new double[4];
         out[0] = Math.PI*2*f*l;
         out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
