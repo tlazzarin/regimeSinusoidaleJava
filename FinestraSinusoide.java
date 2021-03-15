@@ -16,11 +16,11 @@ public class FinestraSinusoide extends JFrame implements ActionListener {
     JLabel FreqL= new JLabel("f");
     JLabel InduL= new JLabel("L");
     JLabel VoltL= new JLabel("V");
-    JTextField Res= new JTextField(4);
-    JTextField Cap= new JTextField(4);
-    JTextField Freq= new JTextField(4);
-    JTextField Indu= new JTextField(4);
-    JTextField Volt= new JTextField(4);
+    JTextField Res= new JTextField("0",4);
+    JTextField Cap= new JTextField("0",4);
+    JTextField Freq= new JTextField("0",4);
+    JTextField Indu= new JTextField("0",4);
+    JTextField Volt= new JTextField("0",4);
     private static final long serialVersionUID = 1L;
     JComboBox<String> tipo;
     JButton invia = new JButton("Comincia");
