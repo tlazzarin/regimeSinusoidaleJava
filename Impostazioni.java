@@ -39,13 +39,13 @@ public class Impostazioni extends JPanel{
                                                                                         Double.parseDouble(frequenza.getText()))));
                     break;
                 case 1:
-                    risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRcSerie(Double.parseDouble(volt.getText()),
+                    risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRCSerie(Double.parseDouble(volt.getText()),
                                                                                         Double.parseDouble(resistenza.getText()),
                                                                                         Double.parseDouble(condensatore.getText()), 
                                                                                         Double.parseDouble(frequenza.getText()))));
                     break;
                 case 2:
-                    risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRlSerie(Double.parseDouble(volt.getText()),
+                    risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRLSerie(Double.parseDouble(volt.getText()),
                                                                                         Double.parseDouble(resistenza.getText()),
                                                                                         Double.parseDouble(induttore.getText()), 
                                                                                         Double.parseDouble(frequenza.getText()))));

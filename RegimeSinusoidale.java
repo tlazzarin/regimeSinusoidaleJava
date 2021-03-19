@@ -9,17 +9,13 @@ public class RegimeSinusoidale{
      * Metodo che ritorna la corrente e lo sfasamento di un circuito RC serie
      * @return [XC, |Z|, I, Sfasamento]
      */
-    public static String[] circuitoRcSerie(double volt, double r, double c, double f){
-        double[] out = new double[4];
-        out[0] = 1/(Math.PI*2*f*c);
-        out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
-        out[2] = volt/out[1];
-        out[3] = Math.toDegrees(Math.atan(-out[0]/r));
+    public static String[] circuitoRCSerie(double volt, double r, double c, double f){
+        String[] supp = circuitoRLCSerie(volt, r, 0, c, f);
         String[] stringa = new String[4];
-        stringa[0]="XC = "+out[0]+OMEGA;
-        stringa[1]="|Z| = "+out[1]+OMEGA;
-        stringa[2]="I = "+out[2]+"A";
-        stringa[3]="\u03C6 = "+out[3]+"°";
+        stringa[0]=supp[0];
+        stringa[1]=supp[2];
+        stringa[2]=supp[3];
+        stringa[3]=supp[4];
         return stringa;
     }
 
@@ -31,18 +27,13 @@ public class RegimeSinusoidale{
      * @param f la frequenza
      * @return [XL, |Z|, I, Sfasamento]
      */
-    public static String[] circuitoRlSerie(double volt, double r, double l, double f){
-        //System.out.println("");
-        double[] out = new double[4];
-        out[0] = Math.PI*2*f*l;
-        out[1] = Math.sqrt(Math.pow(r,2)+Math.pow(out[0], 2));
-        out[2] = volt/out[1];
-        out[3] = Math.toDegrees(Math.atan(out[0]/r));
+    public static String[] circuitoRLSerie(double volt, double r, double l, double f){
+        String[] supp = circuitoRLCSerie(volt, r, l, 0, f);
         String[] stringa = new String[4];
-        stringa[0]="XL = "+out[0]+OMEGA;
-        stringa[1]="|Z| = "+out[1]+OMEGA;
-        stringa[2]="I = "+out[2]+"A";
-        stringa[3]="\u03C6 = "+out[3]+"°";
+        stringa[0]=supp[1];
+        stringa[1]=supp[2];
+        stringa[2]=supp[3];
+        stringa[3]=supp[4];
         return stringa;
     }
 
@@ -77,8 +68,37 @@ public class RegimeSinusoidale{
      */
     public static String[] valoreEfficaceC(double v, double c, double f){
         String[] out = new String[2];
-        out[0] = circuitoRcSerie(v, 0, c, f)[2];
+        out[0] = circuitoRCSerie(v, 0, c, f)[2];
         out[1] = "IP = "+(Double.parseDouble(out[0].substring(5,out[0].length()-1)) * Math.sqrt(2));
+        return out;
+    }
+
+    public static double calcolaOmega(double f){
+        return 2*Math.PI*f;
+    }
+
+    /**
+     * Metodo che ritorna la corrente e lo sfasamento di un circuito RLC serie
+     * @param volt voltaggio
+     * @param r la resistenza
+     * @param l l'induttanza
+     * @param c capacità condensatore
+     * @param f la frequenza
+     * @return [XC, XL, |Z|, I, Sfasamento]
+     */
+    public static String[] circuitoRLCSerie(double volt, double r, double l, double c, double f){
+        double[] temp = new double[5];
+        temp[0]=1/(calcolaOmega(f)*c);
+        temp[1]=calcolaOmega(f)*l;
+        temp[2]=Math.sqrt(Math.pow(r, 2)+Math.pow(temp[1]-temp[0], 2));
+        temp[3]=volt/temp[2];
+        temp[4]=Math.toDegrees(Math.atan((temp[0]-temp[1])/r));
+        String[] out = new String[5];
+        out[0]="XC = "+temp[0]+OMEGA;
+        out[1]="XL = "+temp[1]+OMEGA;
+        out[2]="|Z| = "+temp[2]+OMEGA;
+        out[3]="I = "+temp[3]+"A";
+        out[4]="\u03C6 = "+temp[4]+"°";
         return out;
     }
 }
