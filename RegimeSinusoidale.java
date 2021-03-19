@@ -73,7 +73,7 @@ public class RegimeSinusoidale{
         return out;
     }
 
-    public static double calcolaOmega(double f){
+    public static double pulsazione(double f){
         return 2*Math.PI*f;
     }
 
@@ -88,8 +88,8 @@ public class RegimeSinusoidale{
      */
     public static String[] circuitoRLCSerie(double volt, double r, double l, double c, double f){
         double[] temp = new double[5];
-        temp[0]=1/(calcolaOmega(f)*c);
-        temp[1]=calcolaOmega(f)*l;
+        temp[0]=1/(pulsazione(f)*c);
+        temp[1]=pulsazione(f)*l;
         temp[2]=Math.sqrt(Math.pow(r, 2)+Math.pow(temp[1]-temp[0], 2));
         temp[3]=volt/temp[2];
         temp[4]=Math.toDegrees(Math.atan((temp[1]-temp[0])/r));

@@ -5,8 +5,8 @@ public class FinestraToma extends JFrame{
 
     public FinestraToma(){
         super("Calcolatore circuiti a regime sinusoidale");
-        setSize(700,200);
-        setResizable(false);
+        setMinimumSize(new Dimension(800,200));
+        setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(2,6));
         JTextField risultato = new JTextField();
