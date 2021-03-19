@@ -49,6 +49,13 @@ public class Impostazioni extends JPanel{
                                                                                         Double.parseDouble(resistenza.getText()),
                                                                                         Double.parseDouble(induttore.getText()), 
                                                                                         Double.parseDouble(frequenza.getText()))));
+                    break;
+                case 3:
+                    risultato.setText(Arrays.toString(RegimeSinusoidale.circuitoRLCSerie(Double.parseDouble(volt.getText()),
+                                                                                        Double.parseDouble(resistenza.getText()),
+                                                                                        Double.parseDouble(induttore.getText()), 
+                                                                                        Double.parseDouble(condensatore.getText()),
+                                                                                        Double.parseDouble(frequenza.getText()))));
                     break;                                                                    
                 default:
                     risultato.setText("Sos");

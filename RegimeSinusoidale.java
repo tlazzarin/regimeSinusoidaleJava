@@ -92,7 +92,7 @@ public class RegimeSinusoidale{
         temp[1]=calcolaOmega(f)*l;
         temp[2]=Math.sqrt(Math.pow(r, 2)+Math.pow(temp[1]-temp[0], 2));
         temp[3]=volt/temp[2];
-        temp[4]=Math.toDegrees(Math.atan((temp[0]-temp[1])/r));
+        temp[4]=Math.toDegrees(Math.atan((temp[1]-temp[0])/r));
         String[] out = new String[5];
         out[0]="XC = "+temp[0]+OMEGA;
         out[1]="XL = "+temp[1]+OMEGA;
